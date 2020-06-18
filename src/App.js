@@ -7,22 +7,15 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
+import TopicPage from "./pages/TopicPage";
+import UserPage from "./pages/UserPage";
+import CollectionPage from "./pages/CollectionPage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
-
-const Home = () => (
-  <Jumbotron>
-    <h1>Home</h1>
-  </Jumbotron>
-);
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
+import { selectToken } from "./store/user/selectors";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +25,8 @@ function App() {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
 
+  const token = useSelector(selectToken);
+
   return (
     <div className="App">
       <Navigation />
@@ -39,7 +34,17 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/other" component={Other} />
+        <Route path="/flashcards" component={TopicPage} />
+        {token ? (
+          <Route path="/profile" component={UserPage} />
+        ) : (
+          <Route path="/profile" component={Home} />
+        )}
+        {token ? (
+          <Route path="/collection" component={CollectionPage} />
+        ) : (
+          <Route path="/collection" component={Home} />
+        )}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
