@@ -8,7 +8,6 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import TopicPage from "./pages/TopicPage";
 import UserPage from "./pages/UserPage";
 import CollectionPage from "./pages/CollectionPage";
 
@@ -34,8 +33,8 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/flashcards" component={TopicPage} />
-        {token ? (
+        <Route path="//collection/:id" component={CollectionPage} />
+        {/* {token ? (
           <Route path="/profile" component={UserPage} />
         ) : (
           <Route path="/profile" component={Home} />
@@ -44,7 +43,7 @@ function App() {
           <Route path="/collection" component={CollectionPage} />
         ) : (
           <Route path="/collection" component={Home} />
-        )}
+        )} */}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
