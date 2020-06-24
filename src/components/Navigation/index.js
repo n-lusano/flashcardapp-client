@@ -24,7 +24,7 @@ export default function Navigation() {
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
           <Link to={`/flashcards`}>
-            <Button variant="secondary">View details</Button>
+            <Button variant="info">View details</Button>
           </Link>
           {loginLogoutControls}
         </Nav>
