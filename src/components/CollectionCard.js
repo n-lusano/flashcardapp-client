@@ -4,9 +4,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Link } from "react-router-dom";
 
-export default function CollectionCard(props) {
-  const { id, name, cards } = props;
-
+export default function CollectionCard({ id, name, cards }) {
   //const resizedFont = { fontSize: "12px" };
   //<div style={resizedFont}>
 

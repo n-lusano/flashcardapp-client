@@ -27,6 +27,7 @@ a.text-info:link {
   backface-visibility: hidden;
   transform-style: preserve-3d;
   border: 0px;
+  margin-bottom: 0px;
 }
 
 .front {
@@ -35,11 +36,11 @@ a.text-info:link {
 
 .back {
   grid-area: frontAndBack;
-  transform: rotateY(-180deg);
+  transform: rotateX(-180deg);
 }
 
 .card-container:hover .card-flip {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .card-flip {
