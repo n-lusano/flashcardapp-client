@@ -1,5 +1,6 @@
 .collectionCard,
-.Card {
+.Card,
+.Card2 {
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -10,3 +11,42 @@
 a.text-info:link {
   text-decoration: none;
 }
+
+/*flipping card transition*/
+.card-container {
+  perspective: 700px;
+}
+
+.card-flip,
+.card-container {
+  transform-style: preserve-3d;
+  transition: all 0.6s ease;
+}
+
+.card-flip div {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border: 0px;
+}
+
+.front {
+  grid-area: frontAndBack;
+}
+
+.back {
+  grid-area: frontAndBack;
+  transform: rotateY(-180deg);
+}
+
+.card-container:hover .card-flip {
+  transform: rotateY(180deg);
+}
+
+.card-flip {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  grid-template-areas: "frontAndBack";
+  transform-style: preserve-3d;
+  transition: all 0.6s ease;
+}
+/*end of flipping card transition*/
