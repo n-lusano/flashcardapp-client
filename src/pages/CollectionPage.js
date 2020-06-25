@@ -29,7 +29,8 @@ const CollectionPage = () => {
           return (
             <div key={collection.id}>
               <Jumbotron>
-                <h1>{collection.name}</h1>
+                <h1>{collection.name}</h1>{" "}
+                <h5>{collection.cards.length} cards</h5>
               </Jumbotron>
 
               <div style={cardStyle} key={collection.cards.id}>
