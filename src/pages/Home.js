@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
+import "../style/Global.css";
+import "../style/CollectionCard.scss";
 
 const Home = () => {
-  // NB RICORDA CHE AL POSTO DI HOMEPAGE VA LA LINGUA SELEZIONATA as props
+  // NB RICORDA CHE AL POSTO DI HOMEPAGE VA LA LINGUA SELEZIONATA => bootstrap dropdown thingy
 
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
@@ -14,6 +16,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchCollections());
   }, [dispatch]);
+
+  const cardStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 
   return (
     <div>
@@ -23,15 +31,8 @@ const Home = () => {
 
       {collections.map((collection) => {
         return (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            key={collection.id}
-          >
-            <div style={{ width: "20%" }}>
+          <div style={cardStyle} key={collection.id}>
+            <div className="collectionCard" style={{ width: "20%" }}>
               <CollectionCard key={collection.id} {...collection} />
             </div>
           </div>
