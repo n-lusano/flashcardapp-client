@@ -18,7 +18,11 @@ export default function CollectionCard(props) {
 
   return (
     <Link to={`/collections/${id}`} className="text-info">
-      <OverlayTrigger placement="right" overlay={tooltip}>
+      <OverlayTrigger
+        placement="right"
+        delay={{ show: 230, hide: 250 }}
+        overlay={tooltip}
+      >
         <Jumbotron>
           <h3>{name}</h3>
           {/* <div style={resizedFont}>{cards.length} cards</div> */}
