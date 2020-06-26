@@ -51,3 +51,13 @@ a.text-info:link {
   transition: all 0.6s ease;
 }
 /*end of flipping card transition*/
+
+/*progress bar animation*/
+/* .progress,
+.progress-bar {
+  height: 20px;
+  background: #69bd45;
+  width: 0;
+  transition: 0.5s;
+} */
+/*end of progress bar animation*/
