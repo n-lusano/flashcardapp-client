@@ -8,20 +8,15 @@ import "../style/Global.css";
 import "../style/CollectionCard.scss";
 
 const Home = () => {
-  // NB RICORDA CHE AL POSTO DI HOMEPAGE VA LA LINGUA SELEZIONATA => bootstrap dropdown thingy
-
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
+  const sortedCollections = [...collections].sort((a, b) => {
+    return b.id - a.id;
+  });
 
   useEffect(() => {
     dispatch(fetchCollections());
   }, [dispatch]);
-
-  const cardStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
 
   return (
     <div>
@@ -29,15 +24,17 @@ const Home = () => {
         <h1>Homepage</h1>
       </Jumbotron>
 
-      {collections.map((collection) => {
-        return (
-          <div style={cardStyle} key={collection.id}>
-            <div className="collectionCard" style={{ width: "20%" }}>
-              <CollectionCard key={collection.id} {...collection} />
+      <div className="row">
+        {sortedCollections.map((collection) => {
+          return (
+            <div className="col-md-3" key={collection.id}>
+              <div className="collectionCard" style={{ width: "13em" }}>
+                <CollectionCard key={collection.id} {...collection} />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
