@@ -25,11 +25,14 @@ const Home = () => {
       </Jumbotron>
 
       <div className="row">
+        <br />
         {sortedCollections.map((collection) => {
           return (
-            <div className="col-md-3" key={collection.id}>
-              <div className="collectionCard" style={{ width: "13em" }}>
-                <CollectionCard key={collection.id} {...collection} />
+            <div key={collection.id}>
+              <div className="col-md-3" key={collection.id}>
+                <div className="collectionCard" style={{ width: "13em" }}>
+                  <CollectionCard key={collection.id} {...collection} />
+                </div>
               </div>
             </div>
           );

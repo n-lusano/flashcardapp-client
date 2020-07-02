@@ -3,7 +3,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 
-export default function Card({ cards }) {
+const Card = ({ cards }) => {
   let [index, setIndex] = useState(1);
   const cardCount = cards.length;
   const routeParameters = useParams();
@@ -13,6 +13,11 @@ export default function Card({ cards }) {
 
   const firstCard = index === 1;
   const lastCard = index === cardCount;
+
+  // useEffect(() => {
+  //   dispatch(fetchCollections());
+  // }, [dispatch]);
+  //THIS IS retrieve CURRENT SESSION??
 
   return (
     <div>
@@ -100,7 +105,9 @@ export default function Card({ cards }) {
       })}
     </div>
   );
-}
+};
+
+export default Card;
 
 /*&#9664; or &#11207;*/
 /*&#9654; or &#11208;*/
