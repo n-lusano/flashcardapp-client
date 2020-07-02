@@ -34,7 +34,7 @@ const CollectionPage = () => {
               </Jumbotron>
 
               <div style={cardStyle} key={collection.cards.id}>
-                <div style={{ width: "20%" }}>
+                <div style={{ width: "15em" }}>
                   <Card key={collection.cards.id} {...collection} />
                 </div>
               </div>

@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Link } from "react-router-dom";
 import { selectToken } from "../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { showMessageWithTimeout } from "../store/appState/actions";
+import { fetchSessions, createSession } from "../store/session/actions";
+import { selectSessions } from "../store/session/selectors";
 
-export default function CollectionCard({ id, name, cards }) {
-  //const resizedFont = { fontSize: "12px" };
-  //<div style={resizedFont}>
-
+const CollectionCard = ({ id, name, cards }) => {
   const dispatch = useDispatch();
-
   const token = useSelector(selectToken);
 
   const tooltip = (
@@ -26,10 +23,18 @@ export default function CollectionCard({ id, name, cards }) {
     dispatch(showMessageWithTimeout("danger", false, "Log in to play!", 1500));
   }
 
+  function newSession() {
+    dispatch(createSession(id));
+  }
+
   return (
     <div>
       {token ? (
-        <Link to={`/collections/${id}`} className="text-info">
+        <Link
+          to={`/collections/${id}`}
+          className="text-info"
+          onClick={newSession}
+        >
           <OverlayTrigger
             placement="right"
             delay={{ show: 230, hide: 250 }}
@@ -49,9 +54,6 @@ export default function CollectionCard({ id, name, cards }) {
       )}
     </div>
   );
-}
+};
 
-// IF TOKEN
-// <Button className="btn-outline-info" variant="light">
-//   &#128393;
-// </Button>
+export default CollectionCard;

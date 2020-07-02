@@ -5,7 +5,11 @@
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  width: auto;
+  /* width: auto; */
+}
+
+.centerAlign {
+  text-align: center;
 }
 
 .row {

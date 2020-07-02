@@ -36,9 +36,13 @@ function App() {
       {token ? (
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/collections/:id" component={CollectionPage} />
           <Route path="/user" component={UserPage} />
-          <Route path="/edit" component={EditPage} />
+          <Route path="/collections/:id" component={CollectionPage} />
+          {/* <Route path="/collections/create" component={CreateCollectionPage???} /> */}
+          <Route path="/collections/:id/edit" component={EditPage} />{" "}
+          {/*<<< EDITCOLLECTIONPAGE???*/}
+          {/* <Route path="/collections/:id/create-card" component={CreateCardPage???} /> */}
+          {/* <Route path="/collections/:id/cards/:cardId/edit" component={EditCardPage???} /> */}
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
         </Switch>
