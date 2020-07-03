@@ -8,7 +8,7 @@ import { selectUser, selectToken } from "../store/user/selectors";
 import "../style/Global.css";
 import "../style/CollectionCard.scss";
 import Button from "react-bootstrap/Button";
-import { fetchSessions, createSession } from "../store/session/actions";
+import { fetchSessions } from "../store/session/actions";
 import { selectSessions } from "../store/session/selectors";
 
 const UserPage = () => {

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
+import { selectToken } from "../store/user/selectors";
+import { fetchSessions } from "../store/session/actions";
 import { useParams } from "react-router-dom";
 
 const CollectionPage = () => {
@@ -11,9 +13,11 @@ const CollectionPage = () => {
   const collections = useSelector(selectCollections);
   const routeParameters = useParams();
   const ID = parseInt(routeParameters.id);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchCollections());
+    dispatch(fetchSessions(token));
   }, [dispatch]);
 
   const cardStyle = {
