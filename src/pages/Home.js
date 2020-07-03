@@ -4,18 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
+import { fetchSessions } from "../store/session/actions";
+import { selectToken } from "../store/user/selectors";
+
 import "../style/Global.css";
 import "../style/CollectionCard.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
+  const token = useSelector(selectToken);
   const sortedCollections = [...collections].sort((a, b) => {
     return b.id - a.id;
   });
 
   useEffect(() => {
     dispatch(fetchCollections());
+    dispatch(fetchSessions(token));
   }, [dispatch]);
 
   return (

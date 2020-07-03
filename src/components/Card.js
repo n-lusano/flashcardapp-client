@@ -14,11 +14,6 @@ const Card = ({ cards }) => {
   const firstCard = index === 1;
   const lastCard = index === cardCount;
 
-  // useEffect(() => {
-  //   dispatch(fetchCollections());
-  // }, [dispatch]);
-  //THIS IS retrieve CURRENT SESSION??
-
   return (
     <div>
       {cards.map((card, cardIndex) => {

@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case "SAVE_SESSIONS":
       return { ...state, all: action.payload };
     case "SAVE_ACTIVE_SESSIONS":
-      console.log("what is the payload", action.payload);
+      // console.log("what is the payload", action.payload);
 
       return { ...state, active: action.payload };
     default:
