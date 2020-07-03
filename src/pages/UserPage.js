@@ -31,8 +31,6 @@ const UserPage = () => {
     fontSize: "0.8em",
   };
 
-  console.log("whatthefuckis SESSIONS", sessions);
-
   return (
     <div>
       <Jumbotron>

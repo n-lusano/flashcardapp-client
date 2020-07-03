@@ -11,3 +11,7 @@
 - [Advanced Association Concepts - Eager loading - Nested eager loading](https://sequelize.org/master/manual/eager-loading.html#nested-eager-loading)
 
   Nested eager loading needed to retrieve all structured user data to display in user profile (see `flashcardapp-server/routers/users.js`)
+
+- [Manual | Sequelize - Ordering](https://sequelize.org/master/manual/model-querying-basics.html#ordering)
+
+  The `order` option takes an array of items to order the query by or a sequelize method. These _items_ are themselves arrays in the form `[column, direction]`. The column will be escaped correctly and the direction will be checked in a whitelist of valid directions (such as `ASC`, `DESC`, `NULLS` `FIRST`, etc).

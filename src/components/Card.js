@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { finishSession } from "../store/session/actions";
 
 const Card = ({ cards }) => {
+  const dispatch = useDispatch();
+
   let [index, setIndex] = useState(1);
   const cardCount = cards.length;
   const routeParameters = useParams();
@@ -17,6 +21,9 @@ const Card = ({ cards }) => {
   return (
     <div>
       {cards.map((card, cardIndex) => {
+        function endSession() {
+          dispatch(finishSession(card.collectionId));
+        }
         //see REFERENCES.md
         if (
           cardIndex === ((index % cardCount) + cardCount) % cardCount &&
@@ -66,8 +73,12 @@ const Card = ({ cards }) => {
                     &#x2716;
                   </Button>
                   {lastCard ? (
-                    <Button className="btn-outline-info" variant="light">
-                      &#9654;
+                    <Button
+                      className="btn-outline-info"
+                      variant="light"
+                      onClick={endSession}
+                    >
+                      &#x1F51A;
                     </Button>
                   ) : (
                     <Button
