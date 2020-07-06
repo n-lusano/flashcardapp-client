@@ -21,7 +21,7 @@ export const fetchSessions = (token) => async (dispatch, getState) => {
     const response = await axios.get(`${apiUrl}/sessions/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log("this is my data", response.data);
+
     dispatch(saveSessions(response.data));
   } catch (error) {
     console.log(error);

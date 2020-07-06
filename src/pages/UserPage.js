@@ -9,7 +9,7 @@ import "../style/Global.css";
 import "../style/CollectionCard.scss";
 import Button from "react-bootstrap/Button";
 import { fetchSessions } from "../store/session/actions";
-import { selectSessions } from "../store/session/selectors";
+import { fetchScoredCards } from "../store/scoredcard/actions";
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -18,12 +18,12 @@ const UserPage = () => {
     return b.id - a.id;
   });
   const user = useSelector(selectUser);
-  const sessions = useSelector(selectSessions);
   const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchCollections());
     dispatch(fetchSessions(token));
+    dispatch(fetchScoredCards(token));
   }, [dispatch]);
 
   const buttonStyle = {

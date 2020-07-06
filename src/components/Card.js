@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { finishSession } from "../store/session/actions";
+import { assignScore, assignWrongScore } from "../store/scoredcard/actions";
 
 const Card = ({ cards }) => {
   const dispatch = useDispatch();
@@ -24,9 +25,17 @@ const Card = ({ cards }) => {
         function endSession() {
           dispatch(finishSession(card.collectionId));
         }
-        //see REFERENCES.md
+        function setScore() {
+          console.log("card id", card.id);
+          dispatch(assignScore(card.collectionId, card.id));
+        }
+
+        function setWrongScore() {
+          console.log("card id", card.id);
+          dispatch(assignWrongScore(card.collectionId, card.id));
+        }
         if (
-          cardIndex === ((index % cardCount) + cardCount) % cardCount &&
+          cardIndex === ((index % cardCount) + cardCount) % cardCount && //see REFERENCES.md
           card.collectionId === ID
         ) {
           return (
@@ -63,13 +72,22 @@ const Card = ({ cards }) => {
                       &#9664;
                     </Button>
                   )}
-                  <Button className="btn-outline-success" variant="light">
+                  <Button
+                    className="btn-outline-success"
+                    variant="light"
+                    value={card.id}
+                    onClick={setScore}
+                  >
                     &#x2714;
                   </Button>{" "}
                   <Button className="btn-outline-info" variant="light">
                     &#128266;
                   </Button>{" "}
-                  <Button className="btn-outline-danger" variant="light">
+                  <Button
+                    className="btn-outline-danger"
+                    variant="light"
+                    onClick={setWrongScore}
+                  >
                     &#x2716;
                   </Button>
                   {lastCard ? (
@@ -78,7 +96,9 @@ const Card = ({ cards }) => {
                       variant="light"
                       onClick={endSession}
                     >
-                      &#x1F51A;
+                      <Link to="/" exact>
+                        &#x1F51A;
+                      </Link>
                     </Button>
                   ) : (
                     <Button

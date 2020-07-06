@@ -5,6 +5,7 @@ import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
 import { fetchSessions } from "../store/session/actions";
+import { fetchScoredCards } from "../store/scoredcard/actions";
 import { selectToken } from "../store/user/selectors";
 
 import "../style/Global.css";
@@ -21,6 +22,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchCollections());
     dispatch(fetchSessions(token));
+    dispatch(fetchScoredCards(token));
   }, [dispatch]);
 
   return (

@@ -5,12 +5,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "SAVE_SESSIONS":
+    case "SAVE_SCOREDCARDS":
+      // console.log("what is payload", action.payload);
       return { ...state, all: action.payload };
-    case "SAVE_ACTIVE_SESSIONS":
-      return { ...state, active: action.payload };
-    case "SAVE_FINISHED_SESSIONS":
-      // console.log("what is the payload", action.payload);
+    case "SAVE_ACTIVE_SCOREDCARD":
+      console.log("what is payload", action.payload);
       return { ...state, active: action.payload };
     default:
       return state;
