@@ -32,7 +32,6 @@ const Home = () => {
       </Jumbotron>
 
       <div className="row">
-        <br />
         {sortedCollections.map((collection) => {
           return (
             <div key={collection.id}>

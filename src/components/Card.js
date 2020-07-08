@@ -26,12 +26,10 @@ const Card = ({ cards }) => {
           dispatch(finishSession(card.collectionId));
         }
         function setScore() {
-          console.log("card id", card.id);
           dispatch(assignScore(card.collectionId, card.id));
         }
 
         function setWrongScore() {
-          console.log("card id", card.id);
           dispatch(assignWrongScore(card.collectionId, card.id));
         }
         if (
@@ -86,6 +84,7 @@ const Card = ({ cards }) => {
                   <Button
                     className="btn-outline-danger"
                     variant="light"
+                    value={card.id}
                     onClick={setWrongScore}
                   >
                     &#x2716;
@@ -96,9 +95,7 @@ const Card = ({ cards }) => {
                       variant="light"
                       onClick={endSession}
                     >
-                      <Link to="/" exact>
-                        &#x1F51A;
-                      </Link>
+                      <Link to="/">&#x1F51A;</Link>
                     </Button>
                   ) : (
                     <Button
@@ -137,3 +134,6 @@ export default Card;
 
 /*&#9664; or &#11207;*/
 /*&#9654; or &#11208;*/
+
+//CORRECT &#x2714;
+//WRONG  &#x2716;
