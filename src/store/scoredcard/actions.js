@@ -11,10 +11,10 @@ export const saveActiveScoredCard = (scoredCard) => ({
   payload: scoredCard,
 });
 
-// export const saveFinishedSession = (session) => ({
-//   type: "SAVE_FINISHED_SESSIONS",
-//   payload: session,
-// });
+export const addSessionScorecards = (scoredCard) => ({
+  type: "ADD_SESSION_SCOREDCARD",
+  payload: scoredCard,
+});
 
 export const fetchScoredCards = (token) => async (dispatch, getState) => {
   try {
@@ -33,15 +33,12 @@ export const assignScore = (collectionId, cardId) => async (
   getState
 ) => {
   try {
-    // console.log("what is card id", cardId);
     const { token } = getState().user;
-
-    let scoredCorrect = true;
 
     const response = await axios.patch(
       `${apiUrl}/scoredcards/collections/${collectionId}/${cardId}`,
       {
-        scoredCorrect,
+        scoredCorrect: true,
         cardId: cardId,
       },
       {
@@ -51,7 +48,8 @@ export const assignScore = (collectionId, cardId) => async (
       }
     );
 
-    dispatch(saveScoredCards(response.data));
+    dispatch(saveActiveScoredCard(response.data));
+    dispatch(addSessionScorecards(response.data));
   } catch (error) {
     console.log(error);
   }
@@ -64,12 +62,10 @@ export const assignWrongScore = (collectionId, cardId) => async (
   try {
     const { token } = getState().user;
 
-    let scoredCorrect = false;
-
     const response = await axios.patch(
       `${apiUrl}/scoredcards/collections/${collectionId}/${cardId}`,
       {
-        scoredCorrect,
+        scoredCorrect: false,
         cardId: cardId,
       },
       {
@@ -80,6 +76,7 @@ export const assignWrongScore = (collectionId, cardId) => async (
     );
 
     dispatch(saveActiveScoredCard(response.data));
+    dispatch(addSessionScorecards(response.data));
   } catch (error) {
     console.log(error);
   }

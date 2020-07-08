@@ -10,7 +10,6 @@ export default (state = initialState, action) => {
     case "SAVE_ACTIVE_SESSIONS":
       return { ...state, active: action.payload };
     case "SAVE_FINISHED_SESSIONS":
-      // console.log("what is the payload", action.payload);
       return { ...state, active: action.payload };
     default:
       return state;
