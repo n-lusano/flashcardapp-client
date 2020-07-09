@@ -6,11 +6,41 @@ export const saveCollections = (collections) => ({
   payload: collections, // => [{}, {}, {}]
 });
 
+export const saveNewCollections = (collections) => ({
+  type: "SAVE_NEW_COLLECTIONS",
+  payload: collections, // => [{}, {}, {}]
+});
+
 export const fetchCollections = () => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
 
     dispatch(saveCollections(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createCollection = (name, userId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    const { token } = getState().user;
+    const response = await axios.post(
+      `${apiUrl}/collections`,
+      {
+        name,
+        userId: userId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    dispatch(saveNewCollections(response.data));
   } catch (error) {
     console.log(error);
   }
