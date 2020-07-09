@@ -39,10 +39,8 @@ const CollectionPage = () => {
               <Jumbotron>
                 <h1>{collection.name}</h1>
                 <h5>{collection.cards.length} cards</h5>
-                <h5>
-                  &#x2714; {scorecards.scoredCorrect}, &#x2716;{" "}
-                  {scorecards.scoredIncorrect}
-                </h5>
+                <h5>&#x2714; {scorecards.scoredCorrect}</h5>
+                <h5>&#x2716; {scorecards.scoredIncorrect}</h5>
               </Jumbotron>
               <div style={cardStyle} key={collection.cards.id}>
                 <div style={{ width: "15em" }}>
