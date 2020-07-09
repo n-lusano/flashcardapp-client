@@ -78,9 +78,9 @@ const Card = ({ cards }) => {
                   >
                     &#x2714;
                   </Button>{" "}
-                  <Button className="btn-outline-info" variant="light">
+                  {/* <Button className="btn-outline-info" variant="light">
                     &#128266;
-                  </Button>{" "}
+                  </Button>{" "} */}
                   <Button
                     className="btn-outline-danger"
                     variant="light"
@@ -90,13 +90,15 @@ const Card = ({ cards }) => {
                     &#x2716;
                   </Button>
                   {lastCard ? (
-                    <Button
-                      className="btn-outline-info"
-                      variant="light"
-                      onClick={endSession}
-                    >
-                      <Link to="/">&#x1F51A;</Link>
-                    </Button>
+                    <Link to="/">
+                      <Button
+                        className="btn-outline-info"
+                        variant="light"
+                        onClick={endSession}
+                      >
+                        &#x1F51A;
+                      </Button>
+                    </Link>
                   ) : (
                     <Button
                       className="btn-outline-info"

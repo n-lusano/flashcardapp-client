@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Jumbotron } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
@@ -37,9 +38,11 @@ const UserPage = () => {
         <h1>Profile page</h1>
       </Jumbotron>
       <div>
-        <Button className="btn-info" style={{ marginLeft: "20px" }}>
-          <span style={buttonStyle}>New Collection</span>
-        </Button>
+        <Link to="/createcollection">
+          <Button className="btn-info" style={{ marginLeft: "20px" }}>
+            <span style={buttonStyle}>New Collection</span>
+          </Button>
+        </Link>
         <br />
         <br />
       </div>
@@ -69,3 +72,11 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+{
+  /* <Link to="/">
+  <Button variant="info" onClick={() => dispatch(logOut())}>
+    Logout
+  </Button>
+</Link>; */
+}

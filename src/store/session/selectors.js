@@ -1,6 +1,6 @@
 export const selectSessions = (state) => state.sessions.all;
 export const selectSessionScoredCards = (state) => {
-  console.log("what is state", state);
+  // console.log("what is state", state);
   if (!state.scoredcards) {
     return {};
   }

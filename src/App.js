@@ -9,8 +9,9 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
-import EditPage from "./pages/EditPage";
 import CollectionPage from "./pages/CollectionPage";
+import CreateNewCollectionPage from "./pages/CreateNewCollectionPage";
+import CreateNewCardPage from "./pages/CreateNewCardPage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -37,12 +38,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/user" component={UserPage} />
-          <Route path="/collections/:id" component={CollectionPage} />
-          {/* <Route path="/collections/create" component={CreateCollectionPage???} /> */}
-          <Route path="/collections/:id/edit" component={EditPage} />{" "}
-          {/*<<< EDITCOLLECTIONPAGE???*/}
-          {/* <Route path="/collections/:id/create-card" component={CreateCardPage???} /> */}
-          {/* <Route path="/collections/:id/cards/:cardId/edit" component={EditCardPage???} /> */}
+          <Route exact path="/collections/:id" component={CollectionPage} />
+          <Route path="/createcollection" component={CreateNewCollectionPage} />
+          <Route path="/createcard" component={CreateNewCardPage} />
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
         </Switch>
