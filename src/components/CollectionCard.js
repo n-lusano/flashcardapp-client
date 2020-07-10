@@ -14,7 +14,7 @@ const CollectionCard = ({ id, name, cards }) => {
 
   const tooltip = (
     <Tooltip id="tooltip">
-      <div>{cards.length} cards</div>
+      <div>{typeof cards === "undefined" ? 0 : cards.length} cards</div>{" "}
     </Tooltip>
   );
 

@@ -10,7 +10,7 @@ import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { createCard } from "../store/card/actions";
 
-const CreateNewCardPage = () => {
+const CreateNewCardExistingCollectionPage = () => {
   const [wordEn, setWordEn] = useState("");
   const [wordNl, setWordNl] = useState("");
   const [collectionId, setCollectionId] = useState();
@@ -99,7 +99,7 @@ const CreateNewCardPage = () => {
   );
 };
 
-export default CreateNewCardPage;
+export default CreateNewCardExistingCollectionPage;
 
 //NO V
 //   <DropdownButton id="dropdown-basic-button" title="Select collection">
