@@ -5,8 +5,14 @@ import Card from "../components/Card";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
 import { selectToken } from "../store/user/selectors";
-import { fetchSessions } from "../store/session/actions";
-import { selectSessionScoredCards } from "../store/session/selectors";
+import {
+  fetchSessions,
+  getUserCollectionSessions,
+} from "../store/session/actions";
+import {
+  selectSessionScoredCards,
+  selectScores,
+} from "../store/session/selectors";
 import { useParams } from "react-router-dom";
 import { fetchScoredCards } from "../store/scoredcard/actions";
 
@@ -17,11 +23,13 @@ const CollectionPage = () => {
   const ID = parseInt(routeParameters.id);
   const token = useSelector(selectToken);
   const scorecards = useSelector(selectSessionScoredCards);
+  const scores = useSelector(selectScores);
 
   useEffect(() => {
     dispatch(fetchCollections());
     dispatch(fetchSessions(token));
     dispatch(fetchScoredCards(token));
+    dispatch(getUserCollectionSessions(ID));
   }, [dispatch]);
 
   const cardStyle = {
@@ -49,6 +57,49 @@ const CollectionPage = () => {
                   <Card key={collection.cards.id} {...collection} />
                 </div>
               </div>
+              <Jumbotron style={{ width: "22em" }}>
+                <strong>User stats</strong>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Correct</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {scores.map((session, index) => {
+                      const correct = session.scoredCards.filter(
+                        (card) => card.scoredCorrect === true
+                      );
+
+                      const percentage = parseInt(
+                        (100 / session.scoredCards.length) * correct.length
+                      );
+
+                      return (
+                        <tr
+                          key={index}
+                          style={index % 2 ? { backgroundColor: "#CCC" } : null}
+                        >
+                          <td
+                            scope="row"
+                            style={{
+                              backgroundColor: "#CCC",
+                            }}
+                          >
+                            #{index + 1}
+                          </td>
+                          <td>{correct.length}</td>
+                          <td>{session.scoredCards.length}</td>
+                          <td>{percentage}%</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </Jumbotron>
             </div>
           );
         }

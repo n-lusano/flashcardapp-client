@@ -1,6 +1,6 @@
 export const selectSessions = (state) => state.sessions.all;
+
 export const selectSessionScoredCards = (state) => {
-  // console.log("what is state", state);
   if (!state.scoredcards) {
     return {};
   }
@@ -34,6 +34,7 @@ export const selectSessionScoredCards = (state) => {
 //and it messes up the active session card count
 
 export const selectActiveSession = (state) => state.sessions.active;
+export const selectScores = (state) => state.sessions.stats;
 
 // WORKED BUT VVV
 // export const selectSessions = (state) => state.sessions.all;
