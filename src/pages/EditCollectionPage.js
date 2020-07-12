@@ -10,8 +10,8 @@ import "../style/Global.css";
 import "../style/CollectionCard.scss";
 import Button from "react-bootstrap/Button";
 import { fetchSessions } from "../store/session/actions";
-import { fetchScoredCards } from "../store/scoredcard/actions";
-import { selectSessionScoredCards } from "../store/session/selectors";
+// import { fetchScoredCards } from "../store/scoredcard/actions";
+// import { selectSessionScoredCards } from "../store/session/selectors";
 import { useParams } from "react-router-dom";
 
 const EditCollectionPage = () => {
@@ -23,16 +23,11 @@ const EditCollectionPage = () => {
     (collection) => collection.id === ID
   )[0];
 
-  // const sortedCollections = [...collections].sort((a, b) => {
-  //   return b.id - a.id;
-  // });
-  // const user = useSelector(selectUser);
   const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchCollections());
     dispatch(fetchSessions(token));
-    // dispatch(fetchScoredCards(token));
   }, [dispatch]);
 
   const buttonStyle = {
