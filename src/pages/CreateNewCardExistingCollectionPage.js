@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
-import { selectNewestCollectionCreated } from "../store/collection/selectors";
-import { fetchCollections } from "../store/collection/actions";
-
+import { Link, useParams } from "react-router-dom";
 import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
 
+import { selectCollections } from "../store/collection/selectors";
+import { fetchCollections } from "../store/collection/actions";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { createCard } from "../store/card/actions";
 
@@ -15,26 +13,22 @@ const CreateNewCardExistingCollectionPage = () => {
   const [wordNl, setWordNl] = useState("");
   const [collectionId, setCollectionId] = useState();
   const dispatch = useDispatch();
-  const userCollections = useSelector(selectNewestCollectionCreated)
-    .userCollections;
-
-  const sortedUserCollections = [...userCollections].sort((a, b) => {
-    return b.id - a.id;
-  });
-
-  const sortedUserCollectionsCopy = [...sortedUserCollections].map(
-    (collection) => {
-      return collection;
-    }
-  );
+  const collections = useSelector(selectCollections);
+  const routeParameters = useParams();
+  const ID = parseInt(routeParameters.id);
+  const currentCollection = collections.filter(
+    (collection) => collection.id === ID
+  )[0];
+  // const userCollections = useSelector(selectNewestCollectionCreated)
+  //   .userCollections;
 
   useEffect(() => {
     dispatch(fetchCollections());
   }, [dispatch]);
 
   function submitForm() {
-    setCollectionId(sortedUserCollectionsCopy[0].id);
-    dispatch(createCard(sortedUserCollectionsCopy[0].id, wordEn, wordNl));
+    setCollectionId(currentCollection.id);
+    dispatch(createCard(currentCollection.id, wordEn, wordNl));
     dispatch(
       showMessageWithTimeout(
         "success",
@@ -49,7 +43,7 @@ const CreateNewCardExistingCollectionPage = () => {
     setCollectionId();
   }
 
-  if (!sortedUserCollectionsCopy[0]) {
+  if (!currentCollection) {
     return <Jumbotron></Jumbotron>;
   }
 
@@ -57,7 +51,7 @@ const CreateNewCardExistingCollectionPage = () => {
     <div>
       <Jumbotron>
         <h1>New card</h1>
-        <h5>in: {sortedUserCollectionsCopy[0].name}</h5>
+        <h5>in: {currentCollection.name}</h5>
       </Jumbotron>
       <Container>
         <Link to="/user">
@@ -87,7 +81,7 @@ const CreateNewCardExistingCollectionPage = () => {
             />
           </Form.Group>
           <Form.Group className="mt-5">
-            <Link to="/createcard">
+            <Link to={`/collections/${currentCollection.id}/createcard`}>
               <Button variant="info" type="submit" onClick={submitForm}>
                 Submit
               </Button>
