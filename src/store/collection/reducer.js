@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
         ],
       };
     case "ELIMINATE_CARD":
-      console.log("what is state.all", state.all);
       return {
         all: [
           ...state.all.map((collection) => {
@@ -26,6 +25,17 @@ export default (state = initialState, action) => {
               collection.cards = collection.cards.filter(
                 (card) => card.id !== action.payload.id
               );
+            }
+            return collection;
+          }),
+        ],
+      };
+    case "UPDATE_COLLECTION":
+      return {
+        all: [
+          ...state.all.map((collection) => {
+            if (collection.id === action.payload.id) {
+              return action.payload;
             }
             return collection;
           }),

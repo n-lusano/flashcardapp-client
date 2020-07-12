@@ -75,9 +75,9 @@ const UserPage = () => {
               <div key={collection.id}>
                 <div key={collection.id}>
                   <br />
-                  <Link to={`/editcollection/${collection.id}`}>
+                  <Link to={`/viewcollection/${collection.id}`}>
                     <Button className="btn-outline-info" variant="light">
-                      <span style={buttonStyle}>Edit</span>
+                      <span style={buttonStyle}>View</span>
                     </Button>
                   </Link>{" "}
                   <Link to={"/user"}>

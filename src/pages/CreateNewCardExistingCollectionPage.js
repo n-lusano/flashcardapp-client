@@ -19,8 +19,6 @@ const CreateNewCardExistingCollectionPage = () => {
   const currentCollection = collections.filter(
     (collection) => collection.id === ID
   )[0];
-  // const userCollections = useSelector(selectNewestCollectionCreated)
-  //   .userCollections;
 
   useEffect(() => {
     dispatch(fetchCollections());

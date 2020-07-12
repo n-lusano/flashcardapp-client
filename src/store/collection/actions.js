@@ -21,6 +21,11 @@ export const eliminateCard = (card) => ({
   payload: card,
 });
 
+export const updateCollection = (collection) => ({
+  type: "UPDATE_COLLECTION",
+  payload: collection,
+});
+
 export const fetchCollections = () => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
@@ -87,6 +92,30 @@ export const deleteCard = (cardId) => async (dispatch, getState) => {
     });
 
     dispatch(eliminateCard(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editCollection = (name, collectionId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    const { token } = getState().user;
+    const response = await axios.patch(
+      `${apiUrl}/collections/${collectionId}`,
+      {
+        name: name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    dispatch(updateCollection(response.data));
   } catch (error) {
     console.log(error);
   }

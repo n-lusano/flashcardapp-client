@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { Jumbotron } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CardGridView from "../components/CardGridView";
+import { Link, useParams } from "react-router-dom";
+
+import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
+
+import { showMessageWithTimeout } from "../store/appState/actions";
+import { editCollection } from "../store/collection/actions";
 import { selectCollections } from "../store/collection/selectors";
-import { fetchCollections } from "../store/collection/actions";
-import { selectUser, selectToken } from "../store/user/selectors";
-import "../style/Global.css";
-import "../style/CollectionCard.scss";
-import Button from "react-bootstrap/Button";
-import { fetchSessions } from "../store/session/actions";
-// import { fetchScoredCards } from "../store/scoredcard/actions";
-// import { selectSessionScoredCards } from "../store/session/selectors";
-import { useParams } from "react-router-dom";
 
 const EditCollectionPage = () => {
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
   const routeParameters = useParams();
@@ -23,23 +18,19 @@ const EditCollectionPage = () => {
     (collection) => collection.id === ID
   )[0];
 
-  const token = useSelector(selectToken);
+  function submitForm() {
+    dispatch(editCollection(name, ID));
+    dispatch(
+      showMessageWithTimeout(
+        "success",
+        true,
+        `Collection "${name}" updated!`,
+        1500
+      )
+    );
 
-  useEffect(() => {
-    dispatch(fetchCollections());
-    dispatch(fetchSessions(token));
-  }, [dispatch]);
-
-  const buttonStyle = {
-    textTransform: "uppercase",
-    fontSize: "0.8em",
-  };
-
-  const cardStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
+    setName("");
+  }
 
   if (!currentCollection) {
     return (
@@ -56,28 +47,27 @@ const EditCollectionPage = () => {
       <Jumbotron>
         <h1>Edit collection "{currentCollection.name}"</h1>
       </Jumbotron>
-      <div>
-        <Link to={`/collections/${currentCollection.id}/createcard`}>
-          <Button className="btn-info" style={{ marginLeft: "20px" }}>
-            <span style={buttonStyle}>New Card</span>
-          </Button>
-        </Link>
-        <br />
-        <br />
-      </div>
-
-      <div className="row">
-        <div className="col-md-3" key={currentCollection.id}>
-          <div style={cardStyle} key={currentCollection.cards.id}>
-            <div style={{ width: "15em" }}>
-              <CardGridView
-                key={currentCollection.cards.id}
-                {...currentCollection}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+          <Form.Group controlId="formCreateCollection">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder={`${currentCollection.name}`}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mt-5">
+            <Link to="/user">
+              <Button variant="info" type="submit" onClick={submitForm}>
+                Submit
+              </Button>
+            </Link>
+          </Form.Group>
+        </Form>
+      </Container>
     </div>
   );
 };

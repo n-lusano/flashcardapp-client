@@ -13,6 +13,7 @@ import CollectionPage from "./pages/CollectionPage";
 import CreateNewCollectionPage from "./pages/CreateNewCollectionPage";
 import CreateNewCardPage from "./pages/CreateNewCardPage";
 import CreateNewCardExistingCollectionPage from "./pages/CreateNewCardExistingCollectionPage";
+import ShowCollectionPage from "./pages/ShowCollectionPage";
 import EditCollectionPage from "./pages/EditCollectionPage";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +48,7 @@ function App() {
             component={CreateNewCardExistingCollectionPage}
           />
           <Route path="/createcollection" component={CreateNewCollectionPage} />
+          <Route path="/viewcollection/:id" component={ShowCollectionPage} />
           <Route path="/editcollection/:id" component={EditCollectionPage} />
           <Route path="/createcard" component={CreateNewCardPage} />
           {/* <Route path="/editcard/:id" component={EditCardPage} /> */}
