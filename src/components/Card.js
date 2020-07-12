@@ -124,6 +124,7 @@ const Card = ({ cards }) => {
                   {`${index}/${cardCount}`}
                 </div>
               </div>
+              <br />
             </div>
           );
         }

@@ -20,7 +20,7 @@ import {
   appDoneLoading,
 } from "../store/appState/actions";
 
-const UserPage = () => {
+const UserPage = ({ id }) => {
   const [collectionId, setCollectionId] = useState();
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
@@ -40,22 +40,6 @@ const UserPage = () => {
     textTransform: "uppercase",
     fontSize: "0.8em",
   };
-
-  // function removeCollection() {
-  //   setCollectionId(collection.id);
-  //   dispatch(deleteCollection(collection.id));
-
-  //   dispatch(
-  //     showMessageWithTimeout(
-  //       "success",
-  //       true,
-  //       `Collection "${collection.name}" removed!`,
-  //       1500
-  //     )
-  //   );
-
-  //   setCollectionId();
-  // }
 
   return (
     <div>
@@ -128,14 +112,3 @@ const UserPage = () => {
 export default UserPage;
 
 // &#128393;  EDIT
-
-{
-  /* <Link to="/">
-  <Button variant="info" onClick={() => dispatch(logOut())}>
-    Logout
-  </Button>
-</Link>; */
-}
-
-// dispatch(appLoading());
-// dispatch(appDoneLoading());

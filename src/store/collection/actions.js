@@ -51,15 +51,21 @@ export const createCollection = (name, userId) => async (
   }
 };
 
-export const deleteCollection = (id) => async (dispatch, getState) => {
+export const deleteCollection = (collectionId) => async (
+  dispatch,
+  getState
+) => {
   try {
     const { token } = getState().user;
-    const response = await axios.delete(`${apiUrl}/collections/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
+    const response = await axios.delete(
+      `${apiUrl}/collections/${collectionId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log("what is response.data", response.data);
     dispatch(eliminateCollection(response.data));
   } catch (error) {
     console.log(error);
