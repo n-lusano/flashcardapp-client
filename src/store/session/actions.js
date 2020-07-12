@@ -16,6 +16,11 @@ export const saveFinishedSession = (session) => ({
   payload: session,
 });
 
+export const saveUserCollectionStats = (sessions) => ({
+  type: "SAVE_USER_COLLECTION_STATS",
+  payload: sessions,
+});
+
 export const fetchSessions = (token) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${apiUrl}/sessions/`, {
@@ -72,6 +77,28 @@ export const finishSession = (collectionId, finished) => async (
     );
 
     dispatch(saveFinishedSession(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserCollectionSessions = (collectionId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    const { token } = getState().user;
+
+    const response = await axios.get(
+      `${apiUrl}/sessions/stats/${collectionId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    dispatch(saveUserCollectionStats(response.data));
   } catch (error) {
     console.log(error);
   }

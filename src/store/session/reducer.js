@@ -1,6 +1,7 @@
 const initialState = {
   all: [],
   active: undefined,
+  stats: [],
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +12,8 @@ export default (state = initialState, action) => {
       return { ...state, active: action.payload };
     case "SAVE_FINISHED_SESSIONS":
       return { ...state, active: action.payload };
+    case "SAVE_USER_COLLECTION_STATS":
+      return { ...state, stats: action.payload };
     default:
       return state;
   }
