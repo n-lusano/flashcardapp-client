@@ -1,18 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Jumbotron } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
-import { fetchCollections } from "../store/collection/actions";
+import {
+  fetchCollections,
+  deleteCollection,
+} from "../store/collection/actions";
 import { selectUser, selectToken } from "../store/user/selectors";
 import "../style/Global.css";
 import "../style/CollectionCard.scss";
 import Button from "react-bootstrap/Button";
 import { fetchSessions } from "../store/session/actions";
 import { fetchScoredCards } from "../store/scoredcard/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
 
 const UserPage = () => {
+  const [collectionId, setCollectionId] = useState();
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
   const sortedCollections = [...collections].sort((a, b) => {
@@ -49,15 +54,44 @@ const UserPage = () => {
 
       <div className="row">
         {sortedCollections.map((collection) => {
+          function removeCollection() {
+            setCollectionId(collection.id);
+            dispatch(deleteCollection(collection.id));
+
+            dispatch(
+              showMessageWithTimeout(
+                "success",
+                true,
+                `Collection "${collection.name}" removed!`,
+                1500
+              )
+            );
+
+            setCollectionId();
+          }
+
           if (user.id === collection.userId) {
             return (
               <div key={collection.id}>
-                <div className="col-md-3" key={collection.id}>
-                  <p>
+                <div key={collection.id}>
+                  <br />
+                  <Link to={`/viewcollection/${collection.id}`}>
                     <Button className="btn-outline-info" variant="light">
-                      &#128393;
+                      <span style={buttonStyle}>View</span>
                     </Button>
-                  </p>
+                  </Link>{" "}
+                  <Link to={"/user"}>
+                    <Button
+                      className="btn-outline-info"
+                      variant="light"
+                      value={collection.id}
+                      onClick={removeCollection}
+                    >
+                      <span style={buttonStyle}>Delete</span>
+                    </Button>
+                  </Link>
+                  <br />
+                  <br />
                   <div className="collectionCard" style={{ width: "13em" }}>
                     <CollectionCard key={collection.id} {...collection} />
                   </div>
@@ -73,10 +107,4 @@ const UserPage = () => {
 
 export default UserPage;
 
-{
-  /* <Link to="/">
-  <Button variant="info" onClick={() => dispatch(logOut())}>
-    Logout
-  </Button>
-</Link>; */
-}
+// &#128393;  EDIT

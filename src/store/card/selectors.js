@@ -3,12 +3,12 @@ export const selectUserCards = (state) => {
     return {};
   }
 
-  console.log("WHAT IS STATE", state);
+  // console.log("WHAT IS STATE", state);
 
   const allCards = state.cards.all;
   const userID = state.user.id;
 
-  console.log("ALL CARDS", allCards);
+  // console.log("ALL CARDS", allCards);
 
   const userCards = allCards.filter((card) => {
     if (card.userId === userID) {
@@ -17,6 +17,6 @@ export const selectUserCards = (state) => {
   });
 
   return {
-    wordEn,
+    userCards,
   };
 };

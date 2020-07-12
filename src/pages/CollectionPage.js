@@ -38,7 +38,9 @@ const CollectionPage = () => {
             <div key={collection.id}>
               <Jumbotron>
                 <h1>{collection.name}</h1>
-                <h5>{collection.cards.length} cards</h5>
+                <h5>
+                  Total of {collection.cards.length} cards in this collection
+                </h5>
                 <h5>&#x2714; {scorecards.scoredCorrect}</h5>
                 <h5>&#x2716; {scorecards.scoredIncorrect}</h5>
               </Jumbotron>
