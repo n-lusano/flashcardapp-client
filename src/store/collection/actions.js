@@ -16,6 +16,11 @@ export const eliminateCollection = (collection) => ({
   payload: collection,
 });
 
+export const eliminateCard = (card) => ({
+  type: "ELIMINATE_CARD",
+  payload: card,
+});
+
 export const fetchCollections = () => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
@@ -65,8 +70,23 @@ export const deleteCollection = (collectionId) => async (
         },
       }
     );
-    console.log("what is response.data", response.data);
+
     dispatch(eliminateCollection(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteCard = (cardId) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().user;
+    const response = await axios.delete(`${apiUrl}/cards/${cardId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    dispatch(eliminateCard(response.data));
   } catch (error) {
     console.log(error);
   }

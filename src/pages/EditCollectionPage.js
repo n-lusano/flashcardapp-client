@@ -88,22 +88,3 @@ const EditCollectionPage = () => {
 };
 
 export default EditCollectionPage;
-
-{
-  /* <div className="row">
-        {collections.map((collection) => {
-          if (collection.id === ID) {
-            return (
-              <div className="col-md-3" key={collection.id}>
-                <h2>{collection.name}</h2>
-                <div style={cardStyle} key={collection.cards.id}>
-                  <div style={{ width: "15em" }}>
-                    <CardGridView key={collection.cards.id} {...collection} />
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        })}
-      </div> */
-}

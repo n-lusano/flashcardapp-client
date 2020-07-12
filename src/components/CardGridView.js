@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deleteCard } from "../store/collection/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
 
 const CardGridView = ({ cards }) => {
+  const [cardId, setCardId] = useState();
   const dispatch = useDispatch();
 
   const routeParameters = useParams();
@@ -19,6 +22,21 @@ const CardGridView = ({ cards }) => {
     <div>
       {cards.map((card) => {
         if (card.collectionId === ID) {
+          function removeCard() {
+            setCardId(card.id);
+            dispatch(deleteCard(card.id));
+
+            dispatch(
+              showMessageWithTimeout(
+                "success",
+                true,
+                `Card "${card.wordEn}" removed!`,
+                1500
+              )
+            );
+
+            setCardId();
+          }
           return (
             <div key={card.id} className="text-info">
               <br />
@@ -29,7 +47,12 @@ const CardGridView = ({ cards }) => {
                 </Button>
               </Link>{" "}
               <Link to={`/editcollection/${card.collectionId}`}>
-                <Button className="btn-outline-info" variant="light">
+                <Button
+                  className="btn-outline-info"
+                  variant="light"
+                  value={card.id}
+                  onClick={removeCard}
+                >
                   <span style={buttonStyle}>Delete</span>
                 </Button>
               </Link>

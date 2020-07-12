@@ -14,13 +14,9 @@ import "../style/CollectionCard.scss";
 import Button from "react-bootstrap/Button";
 import { fetchSessions } from "../store/session/actions";
 import { fetchScoredCards } from "../store/scoredcard/actions";
-import {
-  showMessageWithTimeout,
-  appLoading,
-  appDoneLoading,
-} from "../store/appState/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
 
-const UserPage = ({ id }) => {
+const UserPage = () => {
   const [collectionId, setCollectionId] = useState();
   const dispatch = useDispatch();
   const collections = useSelector(selectCollections);
