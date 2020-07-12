@@ -52,9 +52,9 @@ const CreateNewCardExistingCollectionPage = () => {
         <h5>in: {currentCollection.name}</h5>
       </Jumbotron>
       <Container>
-        <Link to="/user">
+        <Link to={`/viewcollection/${currentCollection.id}`}>
           <Button variant="info" type="submit">
-            Back to MyProfile
+            Back to collection
           </Button>
         </Link>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">

@@ -49,7 +49,7 @@ const EditCollectionPage = () => {
       </Jumbotron>
       <Container>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-          <Form.Group controlId="formCreateCollection">
+          <Form.Group controlId="formEditCollection">
             <Form.Label>Name</Form.Label>
             <Form.Control
               value={name}

@@ -40,13 +40,14 @@ const CardGridView = ({ cards }) => {
           return (
             <div key={card.id} className="text-info">
               <br />
-              {/* <span style={buttonStyle}>{card.wordEn}</span>{" "} */}
-              <Link to={`/editcard/${card.id}`}>
+              <Link
+                to={`/editcollection/${card.collectionId}/editcard/${card.id}`}
+              >
                 <Button className="btn-outline-info" variant="light">
                   <span style={buttonStyle}>Edit</span>
                 </Button>
               </Link>{" "}
-              <Link to={`/editcollection/${card.collectionId}`}>
+              <Link to={`/viewcollection/${card.collectionId}`}>
                 <Button
                   className="btn-outline-info"
                   variant="light"

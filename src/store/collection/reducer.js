@@ -41,6 +41,22 @@ export default (state = initialState, action) => {
           }),
         ],
       };
+    case "UPDATE_CARD":
+      return {
+        all: [
+          ...state.all.map((collection) => {
+            if (collection.id === action.payload.collectionId) {
+              collection.cards = collection.cards.map((card) => {
+                if (card.id === action.payload.id) {
+                  return action.payload;
+                }
+                return card;
+              });
+            }
+            return collection;
+          }),
+        ],
+      };
     default:
       return state;
   }

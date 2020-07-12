@@ -15,6 +15,7 @@ import CreateNewCardPage from "./pages/CreateNewCardPage";
 import CreateNewCardExistingCollectionPage from "./pages/CreateNewCardExistingCollectionPage";
 import ShowCollectionPage from "./pages/ShowCollectionPage";
 import EditCollectionPage from "./pages/EditCollectionPage";
+import EditCardPage from "./pages/EditCardPage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -49,9 +50,17 @@ function App() {
           />
           <Route path="/createcollection" component={CreateNewCollectionPage} />
           <Route path="/viewcollection/:id" component={ShowCollectionPage} />
-          <Route path="/editcollection/:id" component={EditCollectionPage} />
+          <Route
+            exact
+            path="/editcollection/:id"
+            component={EditCollectionPage}
+          />
           <Route path="/createcard" component={CreateNewCardPage} />
-          {/* <Route path="/editcard/:id" component={EditCardPage} /> */}
+          <Route
+            exact
+            path="/editcollection/:collectionId/editcard/:cardId"
+            component={EditCardPage}
+          />
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
         </Switch>

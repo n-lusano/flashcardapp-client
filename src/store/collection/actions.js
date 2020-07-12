@@ -26,6 +26,11 @@ export const updateCollection = (collection) => ({
   payload: collection,
 });
 
+export const updateCard = (card) => ({
+  type: "UPDATE_CARD",
+  payload: card,
+});
+
 export const fetchCollections = () => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
@@ -116,6 +121,31 @@ export const editCollection = (name, collectionId) => async (
     );
 
     dispatch(updateCollection(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editCard = (wordEn, wordNl, cardId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    const { token } = getState().user;
+    const response = await axios.patch(
+      `${apiUrl}/cards/${cardId}`,
+      {
+        wordEn: wordEn,
+        wordNl: wordNl,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    dispatch(updateCard(response.data));
   } catch (error) {
     console.log(error);
   }
