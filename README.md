@@ -1,5 +1,8 @@
 # :nerd_face: FlashcardApp :book:
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f9e6289a-2350-4f27-abb9-a78ab56be2a2/deploy-status)](https://app.netlify.com/sites/portfolio-flashcardapp/deploys)
+
+**Check out the [deployed](https://portfolio-flashcardapp.netlify.app/) site!**
 ## Table of contents
 
 - [About](#about)
@@ -13,8 +16,6 @@
 ### About
 
 FlashcardApp is an app to provide language learners with an essential learning tool. Flashcards help in building and expanding vocabulary in a fun way, which has long been regarded as the fastest and best way to memorize any type of information, and especially long lists, as it gets organized it in a way that fundamentally helps a more efficient learning strategy.
-
-### Check out the [deployed](https://portfolio-flashcardapp.netlify.app/) site! :grin::bangbang:
 
 _This project is work in progress. Some features still need to be implemented or revised. Any suggestions or feedback is welcome! Feel free to contact me at n.lusano@gmail.com_ :v:
 
