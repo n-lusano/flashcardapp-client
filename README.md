@@ -1,42 +1,46 @@
-# Frontend template
+# :nerd_face: FlashcardApp :book:
 
-This is a simple react/redux/jwt template to start a project quickly
+## Table of contents
 
-## Table of contents:
+- [About](#about)
+- [Demo](#demo)
+- [Goals](#goals)
+- [Technologies](#technologies)
+- [Project User Stories and Wireframe](#project-user-stories-and-wireframe)
+- [Server Repository](#server-repository)
+- [Available Scripts](#available-scripts)
 
-- **[Setup](#setup-how-to-use-this-template)**
-- **[Create React App docs](#cra-docs)**
+### About
 
-## SETUP How to use this template
+FlashcardApp is an app to provide language learners with an essential learning tool. Flashcards help in building and expanding vocabulary in a fun way, which has long been regarded as the fastest and best way to memorize any type of information, and especially long lists, as it gets organized it in a way that fundamentally helps a more efficient learning strategy.
 
-1. Create a new project based on this template using the `Use this template` button
+_This project is work in progress. Some features still need to be implemented or revised. Any suggestions or feedback is welcome!_
 
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
+### Demo
 
-2. Clone the app
+![demo](https://github.com/n-lusano/flashcardapp-client/blob/master/FLASHCARDAPP_GIF.gif)
 
-```
-git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
-```
+### Goals
 
-3. cd into your project
+My goal for this project was to build a full stack app using the technologies learned in the bootcamp, together with what motivates me in my daily life as a language enthusiast and an expat who has been actively exercising multiple foreign languages for several years. Being a language learner myself personally motivated me in devising my own app in which collecting and rearranging all the features I was more intrigued by as a user, leaving others behind for a personally more fulfilling experience.
 
-```
-cd YOUR_PROJECT_NAME
-```
+### Technologies
 
-4. install dependencies
+- Node.js
+- React
+- Redux
+- Axios
+- React Bootstrap
 
-```
-npm install
-```
+### Project User Stories and Wireframe
 
-5. Start development server with npm start
+The [user stories](https://github.com/n-lusano/flashcardapp-client/projects/1) and [wireframe](https://github.com/n-lusano/flashcardapp-client/blob/master/WIREFRAME.png) I used to plan my project.
 
-```
-npm start
-```
+### Server Repository
 
-## CRA docs
+The repository for the [backend](https://github.com/n-lusano/flashcardapp-server) and the [data model](https://github.com/n-lusano/flashcardapp-server/blob/master/DATABASE_MODEL.png) I used to plan my project. This is a RESTful API using Express.js. The database is built using Postgres. Object-relational mapping is done using Sequelize.
 
-The normal Create React App docs can be found in [CRA_DOCS.md](./CRA_DOCS.md)
+### Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please refer to the [CRA_DOCS](https://github.com/n-lusano/flashcardapp-client/blob/master/CRA_DOCS.md).

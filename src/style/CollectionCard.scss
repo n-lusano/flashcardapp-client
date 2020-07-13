@@ -1,0 +1,8 @@
+.collectionCard,
+.Card {
+  transition: transform 0.2s ease;
+}
+.collectionCard:hover,
+.Card:hover {
+  transform: scale(1.02) translate(0, -3px);
+}
