@@ -14,7 +14,9 @@
 
 FlashcardApp is an app to provide language learners with an essential learning tool. Flashcards help in building and expanding vocabulary in a fun way, which has long been regarded as the fastest and best way to memorize any type of information, and especially long lists, as it gets organized it in a way that fundamentally helps a more efficient learning strategy.
 
-_This project is work in progress. Some features still need to be implemented or revised. Any suggestions or feedback is welcome!_
+### Check out the [deployed](https://portfolio-flashcardapp.netlify.app/) site! :grin::bangbang:
+
+_This project is work in progress. Some features still need to be implemented or revised. Any suggestions or feedback is welcome! Feel free to contact me at n.lusano@gmail.com_ :v:
 
 ### Demo
 
