@@ -32,6 +32,7 @@ export const updateCard = (card) => ({
 });
 
 export const fetchCollections = () => async (dispatch, getState) => {
+  console.log("api url", apiUrl);
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
 
