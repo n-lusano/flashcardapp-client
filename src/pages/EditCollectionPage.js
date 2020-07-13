@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
-
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { editCollection } from "../store/collection/actions";
 import { selectCollections } from "../store/collection/selectors";
 
 const EditCollectionPage = () => {
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const collections = useSelector(selectCollections);
+  const [name, setName] = useState("");
   const routeParameters = useParams();
+  const collections = useSelector(selectCollections);
   const ID = parseInt(routeParameters.id);
   const currentCollection = collections.filter(
     (collection) => collection.id === ID
@@ -55,6 +53,7 @@ const EditCollectionPage = () => {
               value={name}
               onChange={(event) => setName(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder={`${currentCollection.name}`}
               required
             />

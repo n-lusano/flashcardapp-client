@@ -77,6 +77,7 @@ export const finishSession = (collectionId, finished) => async (
     );
 
     dispatch(saveFinishedSession(response.data));
+    dispatch(getUserCollectionSessions(collectionId));
   } catch (error) {
     console.log(error);
   }

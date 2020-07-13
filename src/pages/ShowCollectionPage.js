@@ -1,25 +1,24 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import CardGridView from "../components/CardGridView";
-import { selectCollections } from "../store/collection/selectors";
-import { fetchCollections } from "../store/collection/actions";
-import { selectToken } from "../store/user/selectors";
+import { Jumbotron, Button } from "react-bootstrap";
 import "../style/Global.css";
 import "../style/CollectionCard.scss";
+import CardGridView from "../components/CardGridView";
+import { fetchCollections } from "../store/collection/actions";
+import { selectCollections } from "../store/collection/selectors";
 import { fetchSessions } from "../store/session/actions";
+import { selectToken } from "../store/user/selectors";
 
 const ShowCollectionPage = () => {
   const dispatch = useDispatch();
-  const collections = useSelector(selectCollections);
   const routeParameters = useParams();
+  const token = useSelector(selectToken);
+  const collections = useSelector(selectCollections);
   const ID = parseInt(routeParameters.id);
   const currentCollection = collections.filter(
     (collection) => collection.id === ID
   )[0];
-
-  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchCollections());
@@ -40,9 +39,7 @@ const ShowCollectionPage = () => {
   if (!currentCollection) {
     return (
       <div>
-        <Jumbotron>
-          <h1>View collection</h1>
-        </Jumbotron>
+        <Jumbotron></Jumbotron>
       </div>
     );
   }
@@ -50,7 +47,10 @@ const ShowCollectionPage = () => {
   return (
     <div>
       <Jumbotron>
-        <h1>View collection "{currentCollection.name}"</h1>
+        <h1>"{currentCollection.name}"</h1>
+        <h5>
+          Total of {currentCollection.cards.length} cards in this collection
+        </h5>
       </Jumbotron>
       <div>
         <Link to={`/editcollection/${currentCollection.id}`}>

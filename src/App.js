@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "./App.css";
-
 import { Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
@@ -16,8 +16,6 @@ import CreateNewCardExistingCollectionPage from "./pages/CreateNewCardExistingCo
 import ShowCollectionPage from "./pages/ShowCollectionPage";
 import EditCollectionPage from "./pages/EditCollectionPage";
 import EditCardPage from "./pages/EditCardPage";
-
-import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import { selectToken } from "./store/user/selectors";
@@ -25,12 +23,11 @@ import { selectToken } from "./store/user/selectors";
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
-
-  const token = useSelector(selectToken);
 
   return (
     <div className="App">

@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
-
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { editCard } from "../store/collection/actions";
 import { selectCollections } from "../store/collection/selectors";
 
 const EditCardPage = () => {
+  const dispatch = useDispatch();
   const [wordEn, setWordEn] = useState("");
   const [wordNl, setWordNl] = useState("");
   const [CardId, setCardId] = useState();
-  const dispatch = useDispatch();
-  const collections = useSelector(selectCollections);
   const routeParameters = useParams();
+  const collections = useSelector(selectCollections);
   const cardId = parseInt(routeParameters.cardId);
   const collectionId = parseInt(routeParameters.collectionId);
   const currentCollection = collections.filter(
@@ -59,6 +57,7 @@ const EditCardPage = () => {
               value={wordEn}
               onChange={(event) => setWordEn(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder={currentCard.wordEn}
               required
             />
@@ -69,6 +68,7 @@ const EditCardPage = () => {
               value={wordNl}
               onChange={(event) => setWordNl(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder={currentCard.wordNl}
               required
             />
