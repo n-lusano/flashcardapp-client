@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { finishSession } from "../store/session/actions";
+import { Jumbotron, Button } from "react-bootstrap";
 import { assignScore, assignWrongScore } from "../store/scoredcard/actions";
+import { finishSession } from "../store/session/actions";
 
 const Card = ({ cards }) => {
   const dispatch = useDispatch();
-
   let [index, setIndex] = useState(1);
-  const cardCount = cards.length;
   const routeParameters = useParams();
   const ID = parseInt(routeParameters.id);
-
+  const cardCount = cards.length;
   const widthProgressBar = (100 / cardCount) * index;
-
   const firstCard = index === 1;
   const lastCard = index === cardCount;
 
@@ -90,16 +86,16 @@ const Card = ({ cards }) => {
                     &#x2716;
                   </Button>
                   {lastCard ? (
-                    <Link to="/">
-                      <Button
-                        className="btn-outline-info"
-                        variant="light"
-                        onClick={endSession}
-                      >
-                        &#x1F51A;
-                      </Button>
-                    </Link>
+                    // <Link to="/">
+                    <Button
+                      className="btn-outline-info"
+                      variant="light"
+                      onClick={endSession}
+                    >
+                      &#x1F51A;
+                    </Button>
                   ) : (
+                    // </Link>
                     <Button
                       className="btn-outline-info"
                       variant="light"

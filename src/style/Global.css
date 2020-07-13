@@ -19,7 +19,7 @@ a.text-info:link {
   text-decoration: none;
 }
 
-/*flipping card transition*/
+/*start of flipping card transition*/
 .card-container {
   perspective: 700px;
 }

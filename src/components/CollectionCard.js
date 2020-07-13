@@ -1,12 +1,10 @@
 import React from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Tooltip from "react-bootstrap/Tooltip";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Link } from "react-router-dom";
-import { selectToken } from "../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
+import { Jumbotron, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { createSession } from "../store/session/actions";
+import { selectToken } from "../store/user/selectors";
 
 const CollectionCard = ({ id, name, cards }) => {
   const dispatch = useDispatch();
@@ -39,7 +37,7 @@ const CollectionCard = ({ id, name, cards }) => {
             delay={{ show: 230, hide: 250 }}
             overlay={tooltip}
           >
-            <Jumbotron>
+            <Jumbotron style={{ textAlign: "center", paddingLeft: "10%" }}>
               <h3>{name}</h3>
             </Jumbotron>
           </OverlayTrigger>

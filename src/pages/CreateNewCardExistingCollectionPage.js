@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
-
-import { selectCollections } from "../store/collection/selectors";
-import { fetchCollections } from "../store/collection/actions";
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { createCard } from "../store/card/actions";
+import { fetchCollections } from "../store/collection/actions";
+import { selectCollections } from "../store/collection/selectors";
 
 const CreateNewCardExistingCollectionPage = () => {
+  const dispatch = useDispatch();
   const [wordEn, setWordEn] = useState("");
   const [wordNl, setWordNl] = useState("");
   const [collectionId, setCollectionId] = useState();
-  const dispatch = useDispatch();
-  const collections = useSelector(selectCollections);
   const routeParameters = useParams();
+  const collections = useSelector(selectCollections);
   const ID = parseInt(routeParameters.id);
   const currentCollection = collections.filter(
     (collection) => collection.id === ID
@@ -64,6 +63,7 @@ const CreateNewCardExistingCollectionPage = () => {
               value={wordEn}
               onChange={(event) => setWordEn(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder="Enter an English word"
               required
             />
@@ -74,6 +74,7 @@ const CreateNewCardExistingCollectionPage = () => {
               value={wordNl}
               onChange={(event) => setWordNl(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder="Enter the Dutch translation"
               required
             />
@@ -92,27 +93,3 @@ const CreateNewCardExistingCollectionPage = () => {
 };
 
 export default CreateNewCardExistingCollectionPage;
-
-//NO V
-//   <DropdownButton id="dropdown-basic-button" title="Select collection">
-//   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-//   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-//   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-// </DropdownButton>
-//FINE NO ^
-
-//THIS WORKED VVV
-//<Dropdown className="mb-3" style={{ textAlign: "center" }}>
-//<Dropdown.Toggle variant="info" id="dropdown-toggle">
-//  Select collection
-//</Dropdown.Toggle>
-//<Dropdown.Menu>
-//  {collectionNames.map((name, index) => {
-//    return (
-//      <Dropdown.Item key={index} href="#/action-1">
-//        {name}
-//      </Dropdown.Item>
-//    );
-//  })}
-//</Dropdown.Menu>
-//</Dropdown>

@@ -8,7 +8,7 @@ export const saveCollections = (collections) => ({
 
 export const saveNewCollections = (collections) => ({
   type: "SAVE_NEW_COLLECTIONS",
-  payload: collections, // => [{}, {}, {}]
+  payload: collections,
 });
 
 export const eliminateCollection = (collection) => ({

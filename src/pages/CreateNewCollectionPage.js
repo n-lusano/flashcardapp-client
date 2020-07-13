@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import { Jumbotron, Col, Form, Container, Button } from "react-bootstrap";
-
 import { showMessageWithTimeout } from "../store/appState/actions";
 import { createCollection } from "../store/collection/actions";
 
 const CreateNewCollectionPage = () => {
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
+  const [name, setName] = useState("");
 
   function submitForm() {
     dispatch(createCollection(name));
@@ -38,6 +36,7 @@ const CreateNewCollectionPage = () => {
               value={name}
               onChange={(event) => setName(event.target.value)}
               type="text"
+              autocomplete="off"
               placeholder="Enter collection name"
               required
             />

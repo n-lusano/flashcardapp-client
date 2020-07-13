@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteCard } from "../store/collection/actions";
+import { Jumbotron, Button } from "react-bootstrap";
 import { showMessageWithTimeout } from "../store/appState/actions";
+import { deleteCard } from "../store/collection/actions";
 
 const CardGridView = ({ cards }) => {
-  const [cardId, setCardId] = useState();
   const dispatch = useDispatch();
-
+  const [cardId, setCardId] = useState();
   const routeParameters = useParams();
   const ID = parseInt(routeParameters.id);
 

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Jumbotron } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Jumbotron } from "react-bootstrap";
 import Card from "../components/Card";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
-import { selectToken } from "../store/user/selectors";
+import { fetchScoredCards } from "../store/scoredcard/actions";
 import {
   fetchSessions,
   getUserCollectionSessions,
@@ -13,17 +14,16 @@ import {
   selectSessionScoredCards,
   selectScores,
 } from "../store/session/selectors";
-import { useParams } from "react-router-dom";
-import { fetchScoredCards } from "../store/scoredcard/actions";
+import { selectToken } from "../store/user/selectors";
 
 const CollectionPage = () => {
   const dispatch = useDispatch();
-  const collections = useSelector(selectCollections);
   const routeParameters = useParams();
-  const ID = parseInt(routeParameters.id);
+  const collections = useSelector(selectCollections);
   const token = useSelector(selectToken);
   const scorecards = useSelector(selectSessionScoredCards);
   const scores = useSelector(selectScores);
+  const ID = parseInt(routeParameters.id);
 
   useEffect(() => {
     dispatch(fetchCollections());
@@ -36,6 +36,17 @@ const CollectionPage = () => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  };
+
+  const bold = {
+    fontWeight: "bold",
+  };
+
+  const tableStyle = {
+    textAlign: "center",
+    width: "22em",
+    border: "red",
+    marginLeft: "8%",
   };
 
   return (
@@ -56,50 +67,50 @@ const CollectionPage = () => {
                 <div style={{ width: "15em" }}>
                   <Card key={collection.cards.id} {...collection} />
                 </div>
+                <div style={tableStyle}>
+                  <h4>User stats</h4>
+                  <table className="table table-striped" style={tableStyle}>
+                    <thead>
+                      <tr>
+                        <th scope="col" className="text-info" style={bold}>
+                          #
+                        </th>
+                        <th scope="col">Correct</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {scores.map((session, index) => {
+                        const correct = session.scoredCards.filter(
+                          (card) => card.scoredCorrect === true
+                        );
+
+                        const percentage = parseInt(
+                          (100 / session.scoredCards.length) * correct.length
+                        );
+
+                        return (
+                          <tr key={index}>
+                            <td scope="row" className="text-info" style={bold}>
+                              {index + 1}
+                            </td>
+                            <td>{correct.length}</td>
+                            <td>{session.scoredCards.length}</td>
+                            <td
+                              style={{
+                                textAlign: "right",
+                              }}
+                            >
+                              {percentage}%
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <Jumbotron style={{ width: "22em" }}>
-                <strong>User stats</strong>
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Correct</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Score</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {scores.map((session, index) => {
-                      const correct = session.scoredCards.filter(
-                        (card) => card.scoredCorrect === true
-                      );
-
-                      const percentage = parseInt(
-                        (100 / session.scoredCards.length) * correct.length
-                      );
-
-                      return (
-                        <tr
-                          key={index}
-                          style={index % 2 ? { backgroundColor: "#CCC" } : null}
-                        >
-                          <td
-                            scope="row"
-                            style={{
-                              backgroundColor: "#CCC",
-                            }}
-                          >
-                            #{index + 1}
-                          </td>
-                          <td>{correct.length}</td>
-                          <td>{session.scoredCards.length}</td>
-                          <td>{percentage}%</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </Jumbotron>
             </div>
           );
         }

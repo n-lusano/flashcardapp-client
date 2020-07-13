@@ -1,12 +1,11 @@
 # :nerd_face: FlashcardApp :book:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Table of contents
 
 - [About](#about)
+- [Demo](#demo)
 - [Goals](#goals)
-- [Technologies](#technologies) <!-- - [Demo](#demo) -->
+- [Technologies](#technologies)
 - [Project User Stories and Wireframe](#project-user-stories-and-wireframe)
 - [Server Repository](#server-repository)
 - [Available Scripts](#available-scripts)
@@ -14,6 +13,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### About
 
 FlashcardApp is an app to provide language learners with an essential learning tool. Flashcards help in building and expanding vocabulary in a fun way, which has long been regarded as the fastest and best way to memorize any type of information, and especially long lists, as it gets organized it in a way that fundamentally helps a more efficient learning strategy.
+
+_This project is work in progress. Some features still need to be implemented or revised. Any suggestions or feedback is welcome!_
+
+### Demo
+
+![demo](https://github.com/n-lusano/flashcardapp-client/blob/master/FLASHCARDAPP_GIF.gif)
 
 ### Goals
 
@@ -27,19 +32,15 @@ My goal for this project was to build a full stack app using the technologies le
 - Axios
 - React Bootstrap
 
-<!-- ### Demo
-GIFS HERE -->
-
 ### Project User Stories and Wireframe
 
-The [user stories](https://github.com/n-lusano/flashcardapp-client/projects/1) and [wireframe](https://github.com/n-lusano/flashcardapp-client/blob/development/WIREFRAME.png) I used to plan my project.
-
-<!-- NB CHECK LINKS LATER -->
+The [user stories](https://github.com/n-lusano/flashcardapp-client/projects/1) and [wireframe](https://github.com/n-lusano/flashcardapp-client/blob/master/WIREFRAME.png) I used to plan my project.
 
 ### Server Repository
 
-The repository for the [backend](https://github.com/n-lusano/flashcardapp-server) and the [data model](https://github.com/n-lusano/flashcardapp-server/blob/development/DATABASE_MODEL.png) I used to plan my project. This is a RESTful API using Express.js. The database is built using Postgres. Object-relational mapping is done using Sequelize.
+The repository for the [backend](https://github.com/n-lusano/flashcardapp-server) and the [data model](https://github.com/n-lusano/flashcardapp-server/blob/master/DATABASE_MODEL.png) I used to plan my project. This is a RESTful API using Express.js. The database is built using Postgres. Object-relational mapping is done using Sequelize.
 
 ### Available Scripts
 
-Please refer to the [CRA_DOCS](https://github.com/n-lusano/flashcardapp-client/blob/development/CRA_DOCS.md).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please refer to the [CRA_DOCS](https://github.com/n-lusano/flashcardapp-client/blob/master/CRA_DOCS.md).

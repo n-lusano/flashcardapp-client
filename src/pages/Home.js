@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import { Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Jumbotron } from "react-bootstrap";
+import "../style/Global.css";
+import "../style/CollectionCard.scss";
 import CollectionCard from "../components/CollectionCard";
 import { selectCollections } from "../store/collection/selectors";
 import { fetchCollections } from "../store/collection/actions";
-import { fetchSessions } from "../store/session/actions";
 import { fetchScoredCards } from "../store/scoredcard/actions";
+import { fetchSessions } from "../store/session/actions";
 import { selectToken } from "../store/user/selectors";
-
-import "../style/Global.css";
-import "../style/CollectionCard.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
