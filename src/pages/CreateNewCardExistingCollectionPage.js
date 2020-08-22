@@ -63,7 +63,7 @@ const CreateNewCardExistingCollectionPage = () => {
               value={wordEn}
               onChange={(event) => setWordEn(event.target.value)}
               type="text"
-              autocomplete="off"
+              autoComplete="off"
               placeholder="Enter an English word"
               required
             />
@@ -74,7 +74,7 @@ const CreateNewCardExistingCollectionPage = () => {
               value={wordNl}
               onChange={(event) => setWordNl(event.target.value)}
               type="text"
-              autocomplete="off"
+              autoComplete="off"
               placeholder="Enter the Dutch translation"
               required
             />

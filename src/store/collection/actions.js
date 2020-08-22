@@ -32,7 +32,6 @@ export const updateCard = (card) => ({
 });
 
 export const fetchCollections = () => async (dispatch, getState) => {
-  console.log("api url", apiUrl);
   try {
     const response = await axios.get(`${apiUrl}/collections/`);
 
@@ -42,17 +41,14 @@ export const fetchCollections = () => async (dispatch, getState) => {
   }
 };
 
-export const createCollection = (name, userId) => async (
-  dispatch,
-  getState
-) => {
+export const createCollection = (name) => async (dispatch, getState) => {
   try {
     const { token } = getState().user;
     const response = await axios.post(
       `${apiUrl}/collections`,
       {
         name,
-        userId: userId,
+        // userId: userId,
       },
       {
         headers: {

@@ -36,7 +36,7 @@ const CreateNewCollectionPage = () => {
               value={name}
               onChange={(event) => setName(event.target.value)}
               type="text"
-              autocomplete="off"
+              autoComplete="off"
               placeholder="Enter collection name"
               required
             />
