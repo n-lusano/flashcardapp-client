@@ -8,13 +8,13 @@ import { selectCollections } from "../store/collection/selectors";
 
 const EditCollectionPage = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
   const routeParameters = useParams();
   const collections = useSelector(selectCollections);
   const ID = parseInt(routeParameters.id);
   const currentCollection = collections.filter(
     (collection) => collection.id === ID
   )[0];
+  const [name, setName] = useState(currentCollection.name);
 
   function submitForm() {
     dispatch(editCollection(name, ID));

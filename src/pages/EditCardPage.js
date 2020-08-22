@@ -8,8 +8,6 @@ import { selectCollections } from "../store/collection/selectors";
 
 const EditCardPage = () => {
   const dispatch = useDispatch();
-  const [wordEn, setWordEn] = useState("");
-  const [wordNl, setWordNl] = useState("");
   const [CardId, setCardId] = useState();
   const routeParameters = useParams();
   const collections = useSelector(selectCollections);
@@ -21,6 +19,8 @@ const EditCardPage = () => {
   const currentCard = currentCollection.cards.filter(
     (card) => card.id === cardId
   )[0];
+  const [wordEn, setWordEn] = useState(currentCard.wordEn);
+  const [wordNl, setWordNl] = useState(currentCard.wordNl);
 
   function submitForm() {
     setCardId(cardId);
